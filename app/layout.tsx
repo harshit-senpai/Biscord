@@ -4,6 +4,7 @@ import { Open_Sans } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { ThemeProvider } from "@/provider/ThemeProvider";
+import { ModalProvider } from "@/provider/ModalProvider";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -39,6 +40,7 @@ export default function RootLayout({
             enableSystem={false}
             storageKey="biscord-theme"
           >
+            <ModalProvider />
             {children}
           </ThemeProvider>
         </body>
