@@ -13,14 +13,10 @@ interface FileUploadProps {
   endpoint: "messageFile" | "serverImage";
 }
 
-export function FileUpload({
-  onChange,
-  value,
-  endpoint
-}: FileUploadProps) {
+export function FileUpload({ onChange, value, endpoint }: FileUploadProps) {
   const fileType = value?.split(".").pop();
 
-  if (value && fileType !== "pdf") {
+  if (value && fileType === "image") {
     return (
       <div className="relative h-20 w-20">
         <Image fill src={value} alt="Upload" className="rounded-full" />
@@ -35,7 +31,7 @@ export function FileUpload({
     );
   }
 
-  if (value && fileType === "pdf") {
+  if (value && fileType !== "image") {
     return (
       <div className="relative flex items-center p-2 mt-2 rounded-md bg-background/10">
         <FileIcon className="h-10 w-10 fill-indigo-200 stroke-indigo-400" />
@@ -45,7 +41,7 @@ export function FileUpload({
           rel="noopener noreferrer"
           className="ml-2 text-sm text-indigo-500 dark:text-indigo-400 hover:underline"
         >
-          {value}
+          <p>File</p>
         </a>
         <button
           onClick={() => onChange("")}
