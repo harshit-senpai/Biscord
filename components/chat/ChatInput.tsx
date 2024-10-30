@@ -4,11 +4,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Form, FormControl, FormField, FormItem } from "../ui/form";
-import { Plus, Smile } from "lucide-react";
+import { Plus } from "lucide-react";
 import { Input } from "../ui/input";
 import qs from "query-string";
 import axios from "axios";
 import { useModal } from "@/hooks/useModalStore";
+import { EmojiPicker } from "./EmojiPicker";
 
 interface ChatInputProps {
   apiUrl: string;
@@ -59,7 +60,7 @@ export const ChatInput = ({ apiUrl, query, name, type }: ChatInputProps) => {
               <FormControl>
                 <div className="relative p-4 pb-6">
                   <button
-                    type="submit"
+                    type="button"
                     className="absolute top-7 left-8 h-[24px] w-[24px] bg-zinc-500 dark:bg-zinc-400 hover:bg-zinc-600 dark:hover:bg-zinc-300 transition rounded-full p-1 flex items-center justify-center"
                     onClick={() => onOpen("messageFile", { apiUrl, query })}
                   >
@@ -74,7 +75,11 @@ export const ChatInput = ({ apiUrl, query, name, type }: ChatInputProps) => {
                     }`}
                   />
                   <div className="absolute top-7 right-8">
-                    <Smile />
+                    <EmojiPicker
+                      onChange={(emoji: string) =>
+                        field.onChange(`${field.value} ${emoji}`)
+                      }
+                    />
                   </div>
                 </div>
               </FormControl>
