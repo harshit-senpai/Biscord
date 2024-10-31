@@ -6,6 +6,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { ThemeProvider } from "@/provider/ThemeProvider";
 import { ModalProvider } from "@/provider/ModalProvider";
 import { SocketProvider } from "@/provider/SocketProvider";
+import { QueryProvider } from "@/provider/QueryProvider";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -43,7 +44,7 @@ export default function RootLayout({
           >
             <SocketProvider>
               <ModalProvider />
-              {children}
+              <QueryProvider>{children}</QueryProvider>
             </SocketProvider>
           </ThemeProvider>
         </body>
